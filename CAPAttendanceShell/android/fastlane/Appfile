@@ -1,0 +1,3 @@
+# Configure Play Store credentials here when ready.
+json_key_file("")
+package_name("com.capattendanceshell")

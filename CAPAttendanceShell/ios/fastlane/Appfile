@@ -1,0 +1,4 @@
+# Update these values with production credentials before distribution.
+app_identifier("com.capattendanceshell")
+apple_id("")
+team_id("")

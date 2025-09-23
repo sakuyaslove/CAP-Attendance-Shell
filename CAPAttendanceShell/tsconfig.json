@@ -1,0 +1,16 @@
+{
+  "extends": "@react-native/typescript-config",
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noImplicitAny": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "lib": ["esnext", "dom"],
+    "types": ["react", "react-native"],
+    "jsx": "react-native"
+  },
+  "include": ["src/**/*", "App.tsx"],
+  "exclude": ["node_modules", "__tests__", "e2e"]
+}

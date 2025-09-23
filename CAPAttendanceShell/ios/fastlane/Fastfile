@@ -1,0 +1,26 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Build a debug build for simulators"
+  lane :build_debug do
+    gym(
+      scheme: "CAPAttendanceShell",
+      configuration: "Debug",
+      export_method: "development"
+    )
+  end
+
+  desc "Build a release IPA"
+  lane :build_release do
+    gym(
+      scheme: "CAPAttendanceShell",
+      configuration: "Release",
+      export_method: "app-store"
+    )
+  end
+
+  desc "Run Detox tests on iOS simulator"
+  lane :detox do
+    sh("detox test --configuration ios.sim.debug")
+  end
+end

@@ -1,0 +1,18 @@
+default_platform(:android)
+
+platform :android do
+  desc "Assemble debug APK"
+  lane :build_debug do
+    gradle(task: "assemble", build_type: "Debug")
+  end
+
+  desc "Assemble release bundle"
+  lane :build_release do
+    gradle(task: "bundle", build_type: "Release")
+  end
+
+  desc "Build instrumentation artifacts for Detox"
+  lane :detox do
+    gradle(task: "assembleAndroidTest", build_type: "Debug")
+  end
+end
