@@ -1,14 +1,14 @@
-ï»¿# CAP Attendance Shell
+# CAP Attendance Shell
 
 CAP Attendance Shell is a production-ready React Native wrapper around https://www.capnhq.gov/. It keeps the official CAP experience inside a hardened WebView, adds native navigation controls, and bridges barcode scans straight into whichever form field is focused. Cookies and local storage persist across launches so members stay logged in just as they would in the system browser.
 
 ## Overview
 
 - Native header with Back, Forward, Refresh, Take Attendance, Scan, and Privacy actions
-- Early JavaScript injection (`window.__CapShell__`) that finds the active editable element (shadow DOM aware), updates values, and dispatches `input` / `change` / `keyup` events
+- Early JavaScript injection (`window.__CapShell__`) that finds the active editable element (shadow DOM aware), updates values, and dispatches `input`/`change`/`keyup` events
 - Barcode scanning via `react-native-vision-camera` + `vision-camera-code-scanner`, including permission prompts, haptic feedback, and a clipboard fallback
 - Loading progress bar, pull-to-refresh, offline banner, toast notifications, and graceful error handling
-- Privacy screen summarizing on-device-only data handling
+- Privacy screen summarising on-device-only data handling
 - Jest unit harness, Detox smoke suite, and Fastlane lanes scaffolded for CI/CD
 
 ## Project Structure
@@ -32,7 +32,7 @@ android|ios/fastlane/  # Fastlane scaffolding for CI builds
 - Watchman (macOS, optional but recommended)
 - Xcode 15+ with command-line tools and an iOS simulator image
 - CocoaPods (`sudo gem install cocoapods`)
-- Android Studio (latest) with SDK Platform 34 / Build-Tools 34.x and an emulator (for example Pixel 6 API 34)
+- Android Studio (latest) with SDK Platform 34 / Build-Tools 34.x and an emulator (e.g., Pixel 6 API 34)
 - Java 17 for Android builds
 
 ## Getting Started
@@ -43,7 +43,7 @@ android|ios/fastlane/  # Fastlane scaffolding for CI builds
 npm install
 ```
 
-This installs the React Native runtime plus the native modules (WebView, Vision Camera, barcode scanner, navigation, and more).
+This installs the React Native runtime plus the native modules (WebView, Vision Camera, barcode scanner, navigation, etc.).
 
 ### 2. Run the iOS app (simulator or device)
 
@@ -61,22 +61,22 @@ Tips
 ### 3. Run the Android app (emulator or device)
 
 1. Launch Android Studio, open the AVD Manager, and boot an emulator (Pixel 6 API 34 recommended).
-2. In a terminal run:
+2. In a terminal:
 
 ```bash
 npm run android
 ```
 
 Tips
-- Ensure an emulator is running or a device is connected (`adb devices`) before running the command.
+- Ensure an emulator is running or a device is connected (`adb devices`) before invoking the command.
 - Approve the camera permission the first time the Scan modal opens; the clipboard fallback still works if you decline.
 
 ### 4. Development workflow
 
-- `npm run start` launches Metro bundler if you prefer to run it manually.
-- Fast refresh, React DevTools, and Flipper integrations work out of the box.
+- `npm run start` launches Metro bundler if you want to run it separately.
+- Fast refresh, React DevTools, and Flipper integrations all work out of the box.
 
-## Testing and Quality Gates
+## Testing & Quality Gates
 
 | Command                | Description                                   |
 | ---------------------- | --------------------------------------------- |
@@ -103,11 +103,11 @@ npx detox test --configuration android.emu.debug
 - `ios/fastlane/Fastfile`: `build_debug`, `build_release`, `detox`
 - `android/fastlane/Fastfile`: `build_debug`, `build_release`, `detox`
 
-Populate each platform's `Appfile` and add signing credentials in CI before using these lanes.
+Populate each platformâ€™s `Appfile` and add signing credentials in CI before using these lanes.
 
 ## Configuration Touchpoints
 
-- **URLs and feature flags**: `src/config/appConfig.ts`
+- **URLs & feature flags**: `src/config/appConfig.ts`
 - **Allowed domains**: `ALLOWED_HOST` constant inside `ShellWebView`
 - **Scanner formats**: `SUPPORTED_FORMATS` array in `ScannerModal`
 - **Privacy copy**: `src/screens/PrivacyScreen.tsx`
@@ -115,15 +115,15 @@ Populate each platform's `Appfile` and add signing credentials in CI before usin
 
 ## Next Steps
 
-1. **Exercise on real hardware** - Validate the CAP login and scanner flow on physical iOS and Android devices to confirm camera behavior and haptics.
-2. **Wire up CI/CD** - Connect Fastlane lanes to your build pipeline, add signing assets, and gate merges on `npm run typecheck` plus the Jest suite.
-3. **Security hardening** - Evaluate certificate pinning, CSP enforcement, or navigation blocking if CAP publishes stricter guidance.
-4. **Optional telemetry** - If analytics are ever required, keep them opt-in and ensure no attendance data leaves the device.
-5. **Plan upgrades** - React Native 0.80.0 is the baseline; monitor the CLI template issue in 0.81+ and upgrade when upstream is ready.
+1. **Exercise on real hardware** â€" Validate the CAP login + scanner flow on physical iOS and Android devices to confirm camera behaviour and haptics.
+2. **Wire up CI/CD** â€" Connect Fastlane lanes to your build pipeline, add signing assets, and gate merges on `npm run typecheck` plus the Jest suite.
+3. **Security hardening** â€" Evaluate certificate pinning, CSP enforcement, or navigation blocking if CAP publishes stricter guidance.
+4. **Optional telemetry** â€" If analytics are ever required, keep them opt-in and ensure no attendance data leaves the device.
+5. **Plan upgrades** â€" React Native 0.80.0 is the baseline; monitor the CLI template issue in 0.81+ and upgrade when upstream is ready.
 
 ## Additional Notes
 
 - Hidden debug nodes (`current-url-indicator`, `injection-debug`) exist solely for Detox assertions and are invisible in production.
 - The custom URL scheme `capshell://` is registered on both platforms but acts as a no-op outside automated tests.
-- VisionCamera's advanced frame processors may require `react-native-worklets-core` if custom ML worklets are added later.
+- VisionCameraâ€™s advanced frame processors may require `react-native-worklets-core` if you add custom ML worklets later.
 - Adjust or extend NPM scripts (for example `npm run lint:fix`) as your workflow evolves.
