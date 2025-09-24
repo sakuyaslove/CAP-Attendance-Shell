@@ -46,7 +46,7 @@ npm install
 This installs the React Native runtime plus the native modules (WebView, Vision Camera, barcode scanner, navigation, etc.).
 
 ### 2. Run the iOS app (simulator or device)
-
+**Xcode and its toolchain require macOS. Skip this step for Android if on Windows**
 ```bash
 cd ios
 pod install
@@ -103,7 +103,7 @@ npx detox test --configuration android.emu.debug
 - `ios/fastlane/Fastfile`: `build_debug`, `build_release`, `detox`
 - `android/fastlane/Fastfile`: `build_debug`, `build_release`, `detox`
 
-Populate each platformâ€™s `Appfile` and add signing credentials in CI before using these lanes.
+Populate each platform's `Appfile` and add signing credentials in CI before using these lanes.
 
 ## Configuration Touchpoints
 
@@ -115,15 +115,15 @@ Populate each platformâ€™s `Appfile` and add signing credentials in CI before us
 
 ## Next Steps
 
-1. **Exercise on real hardware** â€" Validate the CAP login + scanner flow on physical iOS and Android devices to confirm camera behaviour and haptics.
-2. **Wire up CI/CD** â€" Connect Fastlane lanes to your build pipeline, add signing assets, and gate merges on `npm run typecheck` plus the Jest suite.
-3. **Security hardening** â€" Evaluate certificate pinning, CSP enforcement, or navigation blocking if CAP publishes stricter guidance.
-4. **Optional telemetry** â€" If analytics are ever required, keep them opt-in and ensure no attendance data leaves the device.
-5. **Plan upgrades** â€" React Native 0.80.0 is the baseline; monitor the CLI template issue in 0.81+ and upgrade when upstream is ready.
+1. **Exercise on real hardware** Validate the CAP login + scanner flow on physical iOS and Android devices to confirm camera behaviour and haptics.
+2. **Wire up CI/CD** Connect Fastlane lanes to your build pipeline, add signing assets, and gate merges on `npm run typecheck` plus the Jest suite.
+3. **Security hardening** Evaluate certificate pinning, CSP enforcement, or navigation blocking if CAP publishes stricter guidance.
+4. **Optional telemetry** If analytics are ever required, keep them opt-in and ensure no attendance data leaves the device.
+5. **Plan upgrades** React Native 0.80.0 is the baseline; monitor the CLI template issue in 0.81+ and upgrade when upstream is ready.
 
 ## Additional Notes
 
 - Hidden debug nodes (`current-url-indicator`, `injection-debug`) exist solely for Detox assertions and are invisible in production.
 - The custom URL scheme `capshell://` is registered on both platforms but acts as a no-op outside automated tests.
-- VisionCameraâ€™s advanced frame processors may require `react-native-worklets-core` if you add custom ML worklets later.
+- VisionCamera's advanced frame processors may require `react-native-worklets-core` if you add custom ML worklets later.
 - Adjust or extend NPM scripts (for example `npm run lint:fix`) as your workflow evolves.
